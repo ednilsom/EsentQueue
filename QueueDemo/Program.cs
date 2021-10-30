@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using EsentQueue;
@@ -21,7 +18,6 @@ namespace QueueDemo
          Console.WriteLine ( $"Using {workers} workers..." );
          MultiThreadReadTest ( ItemCount, workers );
          MultiThreadDequeueAndPeekTest ( ItemCount, workers, workers );
-         Console.ReadLine ( );
       }
 
       private static void MultiThreadReadTest ( int itemCount, int workers )
