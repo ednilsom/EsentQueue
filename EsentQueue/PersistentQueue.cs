@@ -2,16 +2,16 @@
 using System.IO;
 using Microsoft.Isam.Esent.Interop;
 using Microsoft.Isam.Esent.Interop.Vista;
-using MsgPack.Serialization;
+using System.Xml.Serialization;
 
 namespace EsentQueue
 {
    public class PersistentQueue<T> : IDisposable
    {
-      private readonly static MessagePackSerializer<T> _serializer = MessagePackSerializer.Get<T> ( );
+      XmlSerializer _serializer = new XmlSerializer ( typeof ( T ) );
 
       private readonly QueueCursorCache _cursorCache;
-      private readonly string _defaultName = "PersistentQueue.edb";
+      private readonly string _defaultName = "PersistentQueue";
       private readonly string _databaseName;
       private readonly Instance _instance;
 
@@ -75,7 +75,7 @@ namespace EsentQueue
                   {
                      using ( var colStream = new ColumnStream ( cursor.Session, cursor.DataTable, cursor.SerializedObjectColumn ) )
                      {
-                        _serializer.Pack ( colStream, item );
+                        _serializer.Serialize ( colStream, item );
                      }
 
                      update.Save ( );
@@ -118,7 +118,7 @@ namespace EsentQueue
 
                   using ( var colStream = new ColumnStream ( cursor.Session, cursor.DataTable, cursor.SerializedObjectColumn ) )
                   {
-                     item = _serializer.Unpack ( colStream );
+                     item = (T)_serializer.Deserialize ( colStream );
                   }
 
                   Api.JetDelete ( cursor.Session, cursor.DataTable );
@@ -160,7 +160,7 @@ namespace EsentQueue
 
                   using ( var colStream = new ColumnStream ( cursor.Session, cursor.DataTable, cursor.SerializedObjectColumn ) )
                   {
-                     item = _serializer.Unpack ( colStream );
+                     item = (T)_serializer.Deserialize ( colStream );
                   }
 
                   return true;
