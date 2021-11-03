@@ -1,5 +1,5 @@
 # EsentQueue
-a simple disk-backed queue using ManagedEsent
+A simple disk-backed queue using ManagedEsent
 
 ## Building
 
