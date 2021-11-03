@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EsentQueue</name>
+    </assembly>
+    <members>
+        <member name="T:EsentQueue.PersistentQueue`1">
+            <summary>
+            A simple disk-backed queue using ManagedEsent
+            </summary>
+        </member>
+        <member name="M:EsentQueue.PersistentQueue`1.#ctor(System.String,EsentQueue.StartOption)">
+            <summary>
+            A simple disk-backed queue using ManagedEsent
+            </summary>
+            <param name="path">
+            The path to the folder where all files will be stored.
+            </param>
+            <param name="startOption">
+            The start option, Create New or Open Existing.
+            </param>
+        </member>
+        <member name="P:EsentQueue.PersistentQueue`1.Count">
+            <summary>
+            Gets the number of elements in the queue.
+            </summary>
+            <value>
+            The number of elements contained in the queue.
+            </value>
+        </member>
+        <member name="M:EsentQueue.PersistentQueue`1.Enqueue(`0)">
+            <summary>
+            Adds an object to the end of the Queue.
+            </summary>
+            <param name="item">
+            The object to add to the Queue. It must be serializable
+            </param>
+        </member>
+        <member name="M:EsentQueue.PersistentQueue`1.Dequeue">
+            <summary>
+            Removes and returns the object at the beginning of the Queue.
+            </summary>
+            <returns>
+            The object that is removed from the beginning of the Queue
+            </returns>
+        </member>
+        <member name="M:EsentQueue.PersistentQueue`1.TryDequeue(`0@)">
+            <summary>
+            Removes the object at the beginning of the Queue, and copies it to the result parameter.
+            </summary>
+            <param name="item">
+            The removed object.
+            </param>
+            <returns>
+            true if the object is successfully removed; false if the Queue is empty
+            </returns>
+        </member>
+        <member name="M:EsentQueue.PersistentQueue`1.Peek">
+            <summary>
+            Returns the object at the beginning of the Queue without removing it.
+            </summary>
+            <returns>
+            The object at the beginning of the Queue.
+            </returns>
+        </member>
+        <member name="M:EsentQueue.PersistentQueue`1.TryPeek(`0@)">
+            <summary>
+            Returns a value that indicates whether there is an object at the beginning
+            of the Queue, and if one is present, copies it to the result parameter.
+            The object is not removed from the Queue.
+            </summary>
+            <param name="item">If present, the object at the beginning of the Queue;
+            otherwise, the default value of T.</param>
+            <returns>
+            true if there is an object at the beginning of the Queue; false if the Queue is empty.
+            </returns>
+        </member>
+        <member name="M:EsentQueue.PersistentQueue`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:EsentQueue.StartOption">
+            <summary>
+            Options to define on start of the queue
+            </summary>
+        </member>
+        <member name="F:EsentQueue.StartOption.CreateNew">
+            <summary>
+            Create a new empty database.
+            </summary>
+        </member>
+        <member name="F:EsentQueue.StartOption.OpenOrCreate">
+            <summary>
+            Open an existing database or create a new one if not.
+            </summary>
+        </member>
+    </members>
+</doc>

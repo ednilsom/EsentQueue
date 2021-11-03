@@ -137,7 +137,7 @@ namespace QueueDemo
 
       private static void SingleThreadTest ( int itemCount )
       {
-         using ( var queue = new PersistentQueue<Event> ( "test", StartOption.OpenOrCreate ) )
+         using ( var queue = new PersistentQueue<Event> ( "test", StartOption.CreateNew ) )
          {
             var s = new Stopwatch ( );
             s.Start ( );

@@ -6,6 +6,9 @@ using System.Xml.Serialization;
 
 namespace EsentQueue
 {
+   /// <summary>
+   /// A simple disk-backed queue using ManagedEsent
+   /// </summary>
    public class PersistentQueue<T> : IDisposable
    {
       XmlSerializer _serializer = new XmlSerializer ( typeof ( T ) );
@@ -15,6 +18,15 @@ namespace EsentQueue
       private readonly string _databaseName;
       private readonly Instance _instance;
 
+      /// <summary>
+      /// A simple disk-backed queue using ManagedEsent
+      /// </summary>
+      /// <param name="path">
+      /// The path to the folder where all files will be stored.
+      /// </param>
+      /// <param name="startOption">
+      /// The start option, Create New or Open Existing.
+      /// </param>
       public PersistentQueue ( string path, StartOption startOption )
       {
          _instance = new Instance ( "EsentQueue.PersistentQueue", _defaultName );
@@ -39,6 +51,12 @@ namespace EsentQueue
          }
       }
 
+      /// <summary>
+      /// Gets the number of elements in the queue.
+      /// </summary>
+      /// <value>
+      /// The number of elements contained in the queue.
+      /// </value>
       public int Count
       {
          get
@@ -62,6 +80,12 @@ namespace EsentQueue
          }
       }
 
+      /// <summary>
+      /// Adds an object to the end of the Queue.
+      /// </summary>
+      /// <param name="item">
+      /// The object to add to the Queue. It must be serializable
+      /// </param>
       public void Enqueue ( T item )
       {
          var cursor = _cursorCache.GetCursor ( );
@@ -91,6 +115,12 @@ namespace EsentQueue
          }
       }
 
+      /// <summary>
+      /// Removes and returns the object at the beginning of the Queue.
+      /// </summary>
+      /// <returns>
+      /// The object that is removed from the beginning of the Queue
+      /// </returns>
       public T Dequeue ( )
       {
          if ( !TryDequeue ( out T item ) )
@@ -101,6 +131,15 @@ namespace EsentQueue
          return item;
       }
 
+      /// <summary>
+      /// Removes the object at the beginning of the Queue, and copies it to the result parameter.
+      /// </summary>
+      /// <param name="item">
+      /// The removed object.
+      /// </param>
+      /// <returns>
+      /// true if the object is successfully removed; false if the Queue is empty
+      /// </returns>
       public bool TryDequeue ( out T item )
       {
          var cursor = _cursorCache.GetCursor ( );
@@ -133,6 +172,12 @@ namespace EsentQueue
          }
       }
 
+      /// <summary>
+      /// Returns the object at the beginning of the Queue without removing it.
+      /// </summary>
+      /// <returns>
+      /// The object at the beginning of the Queue.
+      /// </returns>
       public T Peek ( )
       {
          if ( !TryPeek ( out T item ) )
@@ -143,6 +188,16 @@ namespace EsentQueue
          return item;
       }
 
+      /// <summary>
+      /// Returns a value that indicates whether there is an object at the beginning
+      /// of the Queue, and if one is present, copies it to the result parameter.
+      /// The object is not removed from the Queue.
+      /// </summary>
+      /// <param name="item">If present, the object at the beginning of the Queue;
+      /// otherwise, the default value of T.</param>
+      /// <returns>
+      /// true if there is an object at the beginning of the Queue; false if the Queue is empty.
+      /// </returns>
       public bool TryPeek ( out T item )
       {
          var cursor = _cursorCache.GetCursor ( );
@@ -173,6 +228,9 @@ namespace EsentQueue
          }
       }
 
+      /// <summary>
+      /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+      /// </summary>
       public void Dispose ( )
       {
          _cursorCache?.FreeAll ( );
@@ -207,7 +265,6 @@ namespace EsentQueue
                   coltyp = VistaColtyp.LongLong,
                   grbit = ColumndefGrbit.ColumnNotNULL | ColumndefGrbit.ColumnAutoincrement
                };
-
                Api.JetAddColumn ( session, tableid, "Id", colDef, null, 0, out JET_COLUMNID colid );
 
                colDef = new JET_COLUMNDEF ( )
@@ -216,9 +273,8 @@ namespace EsentQueue
                };
                Api.JetAddColumn ( session, tableid, "SerializedObject", colDef, null, 0, out colid );
 
-               string indexDef;
-               indexDef = "+Id\0\0";
-               Api.JetCreateIndex ( session, tableid, "primary", CreateIndexGrbit.IndexPrimary, indexDef, indexDef.Length, 100 );
+               string indexDef = "+Id\0\0";
+               Api.JetCreateIndex ( session, tableid, "Primary", CreateIndexGrbit.IndexPrimary, indexDef, indexDef.Length, 100 );
 
                transaction.Commit ( CommitTransactionGrbit.None );
             }
