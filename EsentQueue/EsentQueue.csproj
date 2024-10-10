@@ -1,53 +1,44 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-   <PropertyGroup>
-      <TargetFramework>net6.0</TargetFramework>
-      <PackageId>EsentQueue</PackageId>
-      <Authors>EsentQueue</Authors>
-      <Company>EsentQueue</Company>
-      <Product>EsentQueue</Product>
-      <ApplicationIcon>queue.ico</ApplicationIcon>
-      <PackageReadmeFile>README.md</PackageReadmeFile>
-      <PackageIcon>queue.png</PackageIcon>
-      <EnableNETAnalyzers>True</EnableNETAnalyzers>
-   </PropertyGroup>
-
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <DocumentationFile>C:\Work\Misc\EsentQueue\EsentQueue\EsentQueue.xml</DocumentationFile>
-   </PropertyGroup>
-
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-      <DocumentationFile>C:\Work\Misc\EsentQueue\EsentQueue\EsentQueue.xml</DocumentationFile>
-   </PropertyGroup>
-
-   <ItemGroup>
-      <Content Include="queue.ico" />
-   </ItemGroup>
-
-   <ItemGroup>
-      <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="6.0.0">
-         <PrivateAssets>all</PrivateAssets>
-         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.Database.ManagedEsent" Version="2.0.3" />
-   </ItemGroup>
-
-   <ItemGroup>
-      <Folder Include="Properties\" />
-   </ItemGroup>
-
-   <ItemGroup>
-     <None Include="..\README.md">
-       <Pack>True</Pack>
-       <PackagePath>\</PackagePath>
-     </None>
-   </ItemGroup>
-
-   <ItemGroup>
-     <None Update="queue.png">
-       <Pack>True</Pack>
-       <PackagePath>\</PackagePath>
-     </None>
-   </ItemGroup>
-
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <PackageId>EsentQueue</PackageId>
+    <Authors>EsentQueue</Authors>
+    <Company>EsentQueue</Company>
+    <Product>EsentQueue</Product>
+    <ApplicationIcon>queue.ico</ApplicationIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>queue.png</PackageIcon>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Work\Misc\EsentQueue\EsentQueue\EsentQueue.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\Work\Misc\EsentQueue\EsentQueue\EsentQueue.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="queue.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Database.ManagedEsent" Version="2.0.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="queue.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>
