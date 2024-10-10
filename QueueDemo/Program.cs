@@ -13,12 +13,15 @@ class Program
 
    static void Main ( )
    {
-      const int ItemCount = 50000;
-      SingleThreadTest ( ItemCount );
-      int workers = Environment.ProcessorCount;
-      Console.WriteLine ( $"Using {workers} workers..." );
-      MultiThreadReadTest ( ItemCount, workers );
-      MultiThreadDequeueAndPeekTest ( ItemCount, workers, workers );
+      for ( int ItemCount = 50000; ItemCount < 300000; ItemCount += 50000 )
+      {
+         SingleThreadTest ( ItemCount );
+         int workers = Environment.ProcessorCount;
+         Console.WriteLine ( $"Using {workers} workers..." );
+         MultiThreadReadTest ( ItemCount, workers );
+         MultiThreadDequeueAndPeekTest ( ItemCount, workers, workers );
+         Console.WriteLine ( );
+      }
    }
 
    private static void MultiThreadReadTest ( int itemCount, int workers )
