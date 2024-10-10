@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
-using EsentQueue;
+using Collections.EsentQueue;
 
 class Program
 {
@@ -23,7 +23,7 @@ class Program
 
    private static void MultiThreadReadTest ( int itemCount, int workers )
    {
-      using PersistentQueue<Event> queue = new ( "test", StartOption.OpenOrCreate );
+      using EsentQueue<Event> queue = new ( "test", StartOption.OpenOrCreate );
       Stopwatch s = new ( );
       s.Start ( );
       for ( int i = 0; i < itemCount; i++ )
@@ -65,7 +65,7 @@ class Program
 
    private static void MultiThreadDequeueAndPeekTest ( int itemCount, int peekers, int dequeuers )
    {
-      using PersistentQueue<Event> queue = new ( "test", StartOption.OpenOrCreate );
+      using EsentQueue<Event> queue = new ( "test", StartOption.OpenOrCreate );
       Stopwatch s = new ( );
       s.Start ( );
       for ( int i = 0; i < itemCount; i++ )
@@ -133,7 +133,7 @@ class Program
 
    private static void SingleThreadTest ( int itemCount )
    {
-      using PersistentQueue<Event> queue = new ( "test", StartOption.CreateNew );
+      using EsentQueue<Event> queue = new ( "test", StartOption.CreateNew );
       Stopwatch s = new ( );
       s.Start ( );
       for ( int i = 0; i < itemCount; i++ )

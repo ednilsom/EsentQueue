@@ -1,4 +1,4 @@
-﻿namespace EsentQueue;
+﻿namespace Collections.EsentQueue;
 
 /// <summary>
 /// Options to define on start of the queue

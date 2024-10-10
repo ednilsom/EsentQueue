@@ -4,12 +4,12 @@
         <name>EsentQueue</name>
     </assembly>
     <members>
-        <member name="T:EsentQueue.PersistentQueue`1">
+        <member name="T:Collections.EsentQueue.EsentQueue`1">
             <summary>
             A simple disk-backed queue using ManagedEsent
             </summary>
         </member>
-        <member name="M:EsentQueue.PersistentQueue`1.#ctor(System.String,EsentQueue.StartOption)">
+        <member name="M:Collections.EsentQueue.EsentQueue`1.#ctor(System.String,Collections.EsentQueue.StartOption)">
             <summary>
             A simple disk-backed queue using ManagedEsent
             </summary>
@@ -20,7 +20,7 @@
             The start option, Create New or Open Existing.
             </param>
         </member>
-        <member name="P:EsentQueue.PersistentQueue`1.Count">
+        <member name="P:Collections.EsentQueue.EsentQueue`1.Count">
             <summary>
             Gets the number of elements in the queue.
             </summary>
@@ -28,7 +28,7 @@
             The number of elements contained in the queue.
             </value>
         </member>
-        <member name="M:EsentQueue.PersistentQueue`1.Enqueue(`0)">
+        <member name="M:Collections.EsentQueue.EsentQueue`1.Enqueue(`0)">
             <summary>
             Adds an object to the end of the Queue.
             </summary>
@@ -36,7 +36,7 @@
             The object to add to the Queue. It must be serializable
             </param>
         </member>
-        <member name="M:EsentQueue.PersistentQueue`1.Dequeue">
+        <member name="M:Collections.EsentQueue.EsentQueue`1.Dequeue">
             <summary>
             Removes and returns the object at the beginning of the Queue.
             </summary>
@@ -44,7 +44,7 @@
             The object that is removed from the beginning of the Queue
             </returns>
         </member>
-        <member name="M:EsentQueue.PersistentQueue`1.TryDequeue(`0@)">
+        <member name="M:Collections.EsentQueue.EsentQueue`1.TryDequeue(`0@)">
             <summary>
             Removes the object at the beginning of the Queue, and copies it to the result parameter.
             </summary>
@@ -55,7 +55,7 @@
             true if the object is successfully removed; false if the Queue is empty
             </returns>
         </member>
-        <member name="M:EsentQueue.PersistentQueue`1.Peek">
+        <member name="M:Collections.EsentQueue.EsentQueue`1.Peek">
             <summary>
             Returns the object at the beginning of the Queue without removing it.
             </summary>
@@ -63,7 +63,7 @@
             The object at the beginning of the Queue.
             </returns>
         </member>
-        <member name="M:EsentQueue.PersistentQueue`1.TryPeek(`0@)">
+        <member name="M:Collections.EsentQueue.EsentQueue`1.TryPeek(`0@)">
             <summary>
             Returns a value that indicates whether there is an object at the beginning
             of the Queue, and if one is present, copies it to the result parameter.
@@ -75,22 +75,22 @@
             true if there is an object at the beginning of the Queue; false if the Queue is empty.
             </returns>
         </member>
-        <member name="M:EsentQueue.PersistentQueue`1.Dispose">
+        <member name="M:Collections.EsentQueue.EsentQueue`1.Dispose">
             <summary>
             Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
             </summary>
         </member>
-        <member name="T:EsentQueue.StartOption">
+        <member name="T:Collections.EsentQueue.StartOption">
             <summary>
             Options to define on start of the queue
             </summary>
         </member>
-        <member name="F:EsentQueue.StartOption.CreateNew">
+        <member name="F:Collections.EsentQueue.StartOption.CreateNew">
             <summary>
             Create a new empty database.
             </summary>
         </member>
-        <member name="F:EsentQueue.StartOption.OpenOrCreate">
+        <member name="F:Collections.EsentQueue.StartOption.OpenOrCreate">
             <summary>
             Open an existing database or create a new one if not.
             </summary>

@@ -1,4 +1,4 @@
-﻿namespace EsentQueue;
+﻿namespace Collections.EsentQueue;
 
 using System;
 using System.IO;
@@ -10,12 +10,12 @@ using Microsoft.Isam.Esent.Interop.Vista;
 /// <summary>
 /// A simple disk-backed queue using ManagedEsent
 /// </summary>
-public class PersistentQueue<T> : IDisposable
+public class EsentQueue<T> : IDisposable
 {
    readonly XmlSerializer _serializer = new ( typeof ( T ) );
 
    private readonly QueueCursorCache _cursorCache;
-   private readonly string _defaultName = "PersistentQueue";
+   private readonly string _defaultName = "EsentQueue";
    private readonly string _databaseName;
    private readonly Instance _instance;
 
@@ -28,9 +28,9 @@ public class PersistentQueue<T> : IDisposable
    /// <param name="startOption">
    /// The start option, Create New or Open Existing.
    /// </param>
-   public PersistentQueue ( string path, StartOption startOption )
+   public EsentQueue ( string path, StartOption startOption )
    {
-      _instance = new Instance ( "EsentQueue.PersistentQueue", _defaultName );
+      _instance = new Instance ( "Collections.EsentQueue", _defaultName );
       _instance.Parameters.CreatePathIfNotExist = true;
       _instance.Parameters.CircularLog = true;
       _instance.Parameters.MaxVerPages = 256;

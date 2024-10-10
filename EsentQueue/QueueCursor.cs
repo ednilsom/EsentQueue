@@ -1,4 +1,4 @@
-﻿namespace EsentQueue;
+﻿namespace Collections.EsentQueue;
 
 using System;
 
